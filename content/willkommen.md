@@ -1,3 +1,0 @@
-# Willkommen
-
-Das ist **MiniDocs**.
