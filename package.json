@@ -1,0 +1,45 @@
+{
+  "name": "minidocs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js build",
+    "serve": "node index.js serve",
+    "clean": "rm -rf dist && mkdir dist",
+    "dev": "npm run build && npm run serve",
+    "test": "jest --coverage",
+    "ci:build": "npm run build",
+    "ci:deploy": "rm -rf deploy && mkdir -p deploy && cp -r dist/* deploy/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "marked": "^4.3.0"
+  },
+"jest": {
+
+    "testEnvironment": "node",
+
+    "collectCoverage": true,
+
+    "coverageReporters": ["text", "lcov"],
+
+    "coverageThreshold": {
+
+      "global": { "branches": 80, "functions": 80, "lines": 80, "statements": 80 }
+
+    }
+
+  }
+
+}
+
+
+

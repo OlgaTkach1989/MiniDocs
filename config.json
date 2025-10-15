@@ -1,0 +1,13 @@
+{
+
+  "siteTitle": "MiniDocs",
+
+  "contentDir": "content",
+
+  "outDir": "dist",
+
+  "theme": "light",
+
+  "port": 3000
+
+}
