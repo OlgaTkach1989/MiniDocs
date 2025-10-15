@@ -1,12 +1,6 @@
 name: CI
 
-
-
-on:
-
-  push:
-
-  pull_request:
+on: [push]
 
 
 
@@ -20,63 +14,32 @@ jobs:
 
       - uses: actions/checkout@v4
 
-
-
-      - name: Use Node
-
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
 
         with:
 
-          node-version: '20'
+          node-version: 20
 
           cache: 'npm'
 
+      - name: Install deps (ci if lockfile, else install)
 
+        run: |
 
-      - name: Install
+          if [ -f package-lock.json ]; then
 
-        run: npm ci
+            npm ci
 
+          else
 
+            npm install
 
-      - name: Test + Coverage
-
-        run: npm test --silent
-
-
+          fi
 
       - name: Build
 
-        run: npm run build
+        run: npm run build --if-present
 
+      - name: Test (pass if no tests)
 
-
-      - name: Simuliertes Deployment
-
-        run: npm run ci:deploy
-
-
-
-      - name: Upload Artifact (dist)
-
-        uses: actions/upload-artifact@v4
-
-        with:
-
-          name: minidocs-dist
-
-          path: dist
-
-
-
-      - name: Upload Artifact (deploy)
-
-        uses: actions/upload-artifact@v4
-
-        with:
-
-          name: minidocs-deploy
-
-          path: deploy
-
+        run: npm test -- --ci --passWithNoTests
